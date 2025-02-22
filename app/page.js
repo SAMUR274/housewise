@@ -1,6 +1,5 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
-
 import Link from 'next/link';
 import { 
   Home, Search, TrendingUp, Map, Calculator, Building, 
@@ -37,13 +36,13 @@ export default function RealEstatePage() {
         </div>
         
         <nav className="p-4 space-y-2">
-          <NavItem icon={<Home className="h-5 w-5" />} label="Dashboard" active />
-          <NavItem icon={<Search className="h-5 w-5" />} label="Property Search" />
-          <NavItem icon={<TrendingUp className="h-5 w-5" />} label="Market Trends" />
-          <NavItem icon={<Map className="h-5 w-5" />} label="Neighborhood Analysis" />
-          <NavItem icon={<Calculator className="h-5 w-5" />} label="Mortgage Calculator" />
-          <NavItem icon={<AlertCircle className="h-5 w-5" />} label="Market Alerts" />
-          <NavItem icon={<Settings className="h-5 w-5" />} label="Settings" />
+          <NavItem icon={<Home className="h-5 w-5" />} label="Dashboard" href="/" active />
+          <NavItem icon={<Search className="h-5 w-5" />} label="Property Search" href="/property-search" />
+          <NavItem icon={<TrendingUp className="h-5 w-5" />} label="Market Trends" href="/market-trends" />
+          <NavItem icon={<Map className="h-5 w-5" />} label="Neighborhood Analysis" href="/neighborhood-analysis" />
+          <NavItem icon={<Calculator className="h-5 w-5" />} label="Mortgage Calculator" href="/mortgage-calculator" />
+          <NavItem icon={<AlertCircle className="h-5 w-5" />} label="Market Alerts" href="/market-alerts" />
+          <NavItem icon={<Settings className="h-5 w-5" />} label="Settings" href="/settings" />
         </nav>
       </div>
 
@@ -164,16 +163,18 @@ export default function RealEstatePage() {
 }
 
 // Your existing component definitions
-const NavItem = ({ icon, label, active = false }) => {
+const NavItem = ({ icon, label, href, active = false }) => {
   return (
-    <div className={`
-      flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer
-      ${active ? 'bg-slate-700 text-white' : 'text-gray-300 hover:bg-slate-700 hover:text-white'}
-      transition-colors
-    `}>
-      {icon}
-      <span className="font-medium">{label}</span>
-    </div>
+    <Link href={href}>
+      <div className={`
+        flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer
+        ${active ? 'bg-slate-700 text-white' : 'text-gray-300 hover:bg-slate-700 hover:text-white'}
+        transition-colors
+      `}>
+        {icon}
+        <span className="font-medium">{label}</span>
+      </div>
+    </Link>
   );
 };
 
