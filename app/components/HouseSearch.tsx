@@ -1,5 +1,5 @@
-// components/HouseSearch.tsx
 'use client';
+import { useState } from 'react';
 import { HouseService } from '../api/services/houseService';
 
 const houseService = new HouseService();
@@ -14,8 +14,11 @@ export default function HouseSearch() {
     try {
       setLoading(true);
       setError('');
-      
-      const searchResults = await houseService.searchProperties(query);
+
+      // Process the query using JavaScript's built-in methods
+      const processedQuery = query.split(/\s+/).join(' ');
+
+      const searchResults = await houseService.searchProperties(processedQuery);
       setResults(searchResults);
     } catch (err) {
       setError('Sorry, there was an error processing your search. Please try again.');
