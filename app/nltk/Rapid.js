@@ -2,16 +2,14 @@ const axios = require('axios');
 require('dotenv').config();
 const { OpenAI } = require('openai');
 
-
 // Load OpenAI API key from environment variables
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Zillow API configuration
-const ZILLOW_API_URL = "https://zillow-com1.p.rapidapi.com/propertyExtendedSearch"; // Example endpoint, check the correct one in the docs
-const ZILLOW_API_KEY = "63Aeead9a7mshf9a007c48b29cc6p18a484jsnfcb7db5fb3f3";
-const ZILLOW_API_HOST = "zillow-com1.p.rapidapi.com";
+// Repliers API configuration
+const REPLIERS_API_URL = process.env.REPLIERS_API_URL; // Load from environment variables
+const REPLIERS_API_KEY = process.env.REPLIERS_API_KEY; // Load from environment variables
 
 /**
  * Use OpenAI GPT to extract structured data from a real estate query.
@@ -66,50 +64,49 @@ async function extractQueryInfo(query) {
 }
 
 /**
- * Search for properties on Zillow using the extracted parameters.
+ * Search for properties on Repliers using the extracted parameters.
  * @param {string} location - The location to search for properties.
  * @param {string} [home_type] - Type of property.
  * @param {string} [status_type] - Status of the property (e.g., "ForSale", "ForRent").
  * @returns {Promise<Object>} - The search results.
  */
-async function searchZillowProperties(location, home_type, status_type = "ForSale") {
+async function searchRepliersProperties(location, home_type, status_type = "ForSale") {
     const querystring = {
         location: location || "Waterloo",  // ✅ Use function parameter
         home_type: home_type || "Apartments",  // ✅ Use function parameter
     };
 
     const headers = {
-        "x-rapidapi-key": process.env.ZILLOW_API_KEY,  // Load from .env
-        "x-rapidapi-host": ZILLOW_API_HOST,  // ✅ Fix: Use correct variable
-        "Content-Type": "application/json"
+        "accept": "application/json",
+        "content-type": "application/json",
+        "REPLIERS-API-KEY": REPLIERS_API_KEY,  // ✅ Use environment variable
     };
 
     console.log("Headers being sent:", headers);  // Debugging
-    console.log("Zillow API Key:", process.env.ZILLOW_API_KEY);
+    console.log("Repliers API Key:", REPLIERS_API_KEY);
 
     try {
-        const response = await axios.get(ZILLOW_API_URL, { headers, params: querystring });
+        const response = await axios.get(REPLIERS_API_URL, { headers, params: querystring });
         return response.data;
     } catch (error) {
-        console.error("Error searching Zillow properties:", error);
+        console.error("Error searching REPLIERS properties:", error);
         return null;
     }
 }
-
 
 // Example queries
 const queries = [
     "show me 4 bedroom apartments in Waterloo",
 ];
 
-// Test the OpenAI extraction and Zillow API integration
+// Test the OpenAI extraction and REPLIERS API integration
 (async () => {
     for (const query of queries) {
         console.log(`Query: ${query}`);
         const extractedInfo = await extractQueryInfo(query);
         console.log(`Extracted Info: ${JSON.stringify(extractedInfo)}`);
 
-        const searchResults = await searchZillowProperties(
+        const searchResults = await searchRepliersProperties(
             extractedInfo.location,
             extractedInfo.home_type
         );
