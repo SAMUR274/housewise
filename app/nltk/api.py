@@ -1,6 +1,5 @@
 import os
 import requests
-import time
 from dotenv import load_dotenv # import env variable
 load_dotenv()
 # Zillow API configuration
