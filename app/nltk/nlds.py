@@ -1,8 +1,6 @@
-
 import json
 import os
 from openai import OpenAI
-
 
 #print (os.getenv("OPENAI_API_KEY"))
 client = OpenAI(
@@ -11,7 +9,6 @@ client = OpenAI(
 
 # Load API key from environment variables (replace with your secure storage method)
 #OpenAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
 def extract_query_info(query):
     """
     Use OpenAI GPT to extract structured data from a real estate query.

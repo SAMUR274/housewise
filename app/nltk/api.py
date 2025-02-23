@@ -7,7 +7,7 @@ ZILLOW_API_URL = "https://zillow-com1.p.rapidapi.com/propertyExtendedSearch"  # 
 ZILLOW_API_KEY = os.getenv("ZILLOW_API_KEY")
 ZILLOW_API_HOST = "zillow-com1.p.rapidapi.com"
 
-def search_zillow_properties(location, bedrooms=None, bathrooms=None, price=None, property_type=None):
+def search_zillow_properties(location, bedrooms=None, bathrooms=None, price=None, home_type=None):
     """
     Search for properties on Zillow using the extracted parameters.
     """
@@ -16,7 +16,7 @@ def search_zillow_properties(location, bedrooms=None, bathrooms=None, price=None
         "bedrooms": bedrooms,
         "bathrooms": bathrooms,
         "price": price,
-        "property_type": property_type
+        "home_type": home_type
     }
 
     headers = {
