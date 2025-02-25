@@ -1,3 +1,15 @@
+HomeAI is a sophisticated real estate search platform designed to simplify property discovery for users. Leveraging the power of OpenAI's GPT-4o-mini and the Repliers API, HomeAI Canada intelligently processes natural language queries to deliver highly relevant property listings tailored to user preferences. Users can input real estate queries in plain English and receive the best search results according to their housing specifications, price, and location. Built with Next.js for server-side rendering and API routes. Uses Axios for Repliers API requests and OpenAI for natural language processing.
+
+- Frontend: React, Next.js, TypeScript, Tailwind CSS.
+
+- Backend: Python, TypeScript, Next.js API routes.
+
+- AIs & APIs: OpenAI GPT-4o-mini, Repliers RESTful API.
+
+- IDEs: VSCode, Trae
+
+- Tools: Jupyter Notebook, Axios for HTTP requests, Git for version control.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
