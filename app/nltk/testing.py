@@ -3,8 +3,6 @@ import time
 from nlds import extract_query_info
 from api import search_zillow_properties
 
-url = "https://zillow-com1.p.rapidapi.com/propertyExtendedSearch"
-
 # Example queries
 queries = [
     "show me 4 bedroom apartments in Waterloo"
@@ -27,12 +25,13 @@ for query in queries[:1]:
     
     # Add a delay to avoid hitting rate limits
     time.sleep(1)  # Wait 1 second between requests
-
+"""
 headers = {
-	"x-rapidapi-key": "634eead9a7mshf9a007c48b29cc6p18a484jsnfcb7db5fb3f3",
+	"x-rapidapi-key": "===",
 	"x-rapidapi-host": "zillow-com1.p.rapidapi.com"
 }
 
-response = requests.get(url, headers=headers, params=extracted_info)
+response = requests.get(ZILLOW_API_URL, headers=headers, params=extracted_info)
 print(response.json())
 
+"""
